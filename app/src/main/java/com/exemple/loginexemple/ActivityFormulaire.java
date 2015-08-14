@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
+import com.exemple.loginexemple.Model.Data;
 import com.exemple.loginexemple.Model.JsonParser;
 import com.rengwuxian.materialedittext.MaterialAutoCompleteTextView;
 
@@ -22,10 +23,7 @@ public class ActivityFormulaire extends AppCompatActivity {
 
     TextInputLayout age,info;
     AutoCompleteTextView nom,prenom;
-    int idNom,idPrenom;
-    private static final String[] COUNTRIES = new String[] {
-            "France", "France", "France", "Germany", "Spain"
-    };
+    int idNom=0,idPrenom=1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +39,7 @@ public class ActivityFormulaire extends AppCompatActivity {
 
 
         ArrayAdapter<String> adapterNom = new ArrayAdapter<String>(this,
-                android.R.layout.simple_dropdown_item_1line, COUNTRIES);
+                android.R.layout.simple_dropdown_item_1line,JsonParser.ListNom(ctx));
 
         nom.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -55,7 +53,16 @@ public class ActivityFormulaire extends AppCompatActivity {
         nom.setAdapter(adapterNom);
         nom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-                Toast.makeText(getApplicationContext(),(CharSequence)arg0.getItemAtPosition(arg2), Toast.LENGTH_LONG).show();
+                idNom = arg2;
+                Toast.makeText(getApplicationContext(), (CharSequence) arg0.getItemAtPosition(arg2) + "/" + idNom, Toast.LENGTH_LONG).show();
+                if (idPrenom==idNom){
+                    Data dataItem=JsonParser.dataItem(ctx, idNom);
+                    age.getEditText().setText(dataItem.getAge());
+                    info.getEditText().setText(dataItem.getInfo());
+                }else{
+                    age.getEditText().setText("");
+                    info.getEditText().setText("");
+                }
             }
         });
 
@@ -77,9 +84,19 @@ public class ActivityFormulaire extends AppCompatActivity {
         prenom.setAdapter(adapterPrenom);
         prenom.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,long arg3) {
-                Toast.makeText(getApplicationContext(), (CharSequence)arg0.getItemAtPosition(arg2), Toast.LENGTH_LONG).show();
+                idPrenom=arg2;
+                Toast.makeText(getApplicationContext(), (CharSequence)arg0.getItemAtPosition(arg2)+"/"+idPrenom, Toast.LENGTH_LONG).show();
+                if (idPrenom==idNom){
+                    Data dataItem=JsonParser.dataItem(ctx, idNom);
+                    age.getEditText().setText(dataItem.getAge());
+                    info.getEditText().setText(dataItem.getInfo());
+                }else{
+                    age.getEditText().setText("");
+                    info.getEditText().setText("");
+                }
             }
         });
+
 
     }
 

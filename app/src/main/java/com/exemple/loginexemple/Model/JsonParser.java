@@ -114,4 +114,23 @@ public class JsonParser {
         }
         return mListPrenom;
     }
+    public static Data dataItem(Context ctx,int id){
+
+        Data dataItem = null;
+        if(mListPesonne==null){
+           /* Intent it = new Intent(ctx,SplashActivity.class);
+            ctx.startActivity(it);*/
+            Intent i = ctx.getPackageManager()
+                    .getLaunchIntentForPackage( ctx.getPackageName() );
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            ctx.startActivity(i);
+        }
+        for(Data data : mListPesonne){
+            if(data.getId()==id){
+                dataItem=data;
+            }
+
+        }
+        return dataItem;
+    }
 }
