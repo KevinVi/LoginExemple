@@ -23,7 +23,7 @@ public class ActivityFormulaire extends AppCompatActivity {
 
     TextInputLayout age,info;
     AutoCompleteTextView nom,prenom;
-    int idNom=0,idPrenom=1;
+    int idNom=-1,idPrenom=-2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
