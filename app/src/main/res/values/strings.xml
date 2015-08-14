@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">LoginExemple</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_activity_formulaire">ActivityFormulaire</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="pathContents">http://www.tellmedia.fr/jsontest.json</string>
+</resources>
